@@ -30,6 +30,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -43,6 +47,11 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+
+    def koin_version = "2.1.6"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-scope:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
