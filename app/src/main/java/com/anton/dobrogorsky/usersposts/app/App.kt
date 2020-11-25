@@ -8,6 +8,10 @@ import org.koin.core.context.startKoin
 
 class App: Application() {
 
+    companion object {
+        val BASE_URL = "https://jsonplaceholder.typicode.com"
+    }
+
     override fun onCreate() {
         super.onCreate()
 
@@ -15,7 +19,8 @@ class App: Application() {
             androidLogger()
             androidContext(this@App)
             koin.loadModules(listOf(
-                Modules.viewModelModule
+                Modules.viewModelModule,
+                Modules.networkModule
             ))
             koin.createRootScope()
         }
