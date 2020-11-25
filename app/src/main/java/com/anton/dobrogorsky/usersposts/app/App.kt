@@ -20,7 +20,8 @@ class App: Application() {
             androidContext(this@App)
             koin.loadModules(listOf(
                 Modules.viewModelModule,
-                Modules.networkModule
+                Modules.networkModule,
+                Modules.repositoryModule
             ))
             koin.createRootScope()
         }
