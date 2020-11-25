@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".flow.users.UserListFragment">
 
-    <TextView
-        android:id="@+id/text"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/userList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="User List Fragment" />
-
+        tools:listitem="@layout/item_user_list"/>
 </FrameLayout>
