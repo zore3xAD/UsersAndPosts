@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anton.dobrogorsky.usersposts.R
 import com.anton.dobrogorsky.usersposts.model.User
 
-class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+class UserAdapter(val onItemClick: (userId: User) -> Unit) :
+    RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
     var userList: List<User> = emptyList()
         set(value) {
@@ -32,17 +33,22 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
         return userList.count()
     }
 
-    class ViewHolder(
+    inner class ViewHolder(
         val view: View,
         private val usernameTextView: TextView? = view.findViewById(R.id.username),
         private val emailTextView: TextView? = view.findViewById(R.id.email),
-        private val addressTextView: TextView? = view.findViewById(R.id.address)
+        private val addressTextView: TextView? = view.findViewById(R.id.address),
+        private val userIdTextView: TextView? = view.findViewById(R.id.user_id)
     ) : RecyclerView.ViewHolder(view) {
 
         fun bind(user: User) {
+            view.setOnClickListener {
+                onItemClick.invoke(user)
+            }
             usernameTextView?.text = user.username
             emailTextView?.text = user.email
             addressTextView?.text = user.address.toString()
+            userIdTextView?.text = "# ${adapterPosition + 1}"
         }
 
     }

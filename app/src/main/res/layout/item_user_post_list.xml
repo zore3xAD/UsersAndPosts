@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="4dp"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,39 +16,38 @@
         android:layout_marginBottom="8dp">
 
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:layout_toStartOf="@id/user_id"
+            android:layout_toStartOf="@id/post_id"
             android:textColor="@color/black"
-            tools:text="Antony Hopkins" />
+            android:textSize="24sp"
+            tools:text="Title" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            android:layout_below="@id/title"/>
 
         <TextView
-            android:id="@+id/email"
+            android:id="@+id/body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/username"
+            android:layout_below="@id/divider"
             android:layout_marginTop="8dp"
             android:textSize="14sp"
-            tools:text="zore3x@gmail.com" />
+            tools:text="Post body" />
 
         <TextView
-            android:id="@+id/address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/email"
-            android:layout_marginTop="8dp"
-            android:textSize="14sp"
-            tools:text="Kulas Light" />
-
-        <TextView
-            android:id="@+id/user_id"
+            android:id="@+id/post_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            tools:text="# 1"/>
+            tools:text="# 1" />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
