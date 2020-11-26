@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/body"
             android:layout_marginTop="8dp"
-            android:text="@string/post_comments_label"
+            android:text="@string/post_comments_label_open"
             android:textSize="14sp" />
 
         <TextView
@@ -64,12 +64,11 @@
             android:layout_below="@id/body"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="8dp"
-            android:text="@string/post_comments_label"
             android:textSize="14sp"
             tools:text="44" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/postComments"
+            android:id="@+id/post_comments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/post_comment_label"

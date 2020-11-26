@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Users &amp; Posts</string>
     <string name="post_of_user">Post of user: %s</string>
-    <string name="post_comments_label">Comments</string>
+    <string name="post_comments_label_open">Comments &#709;</string>
+    <string name="post_comments_label_close">Comments &#94;</string>
 </resources>
