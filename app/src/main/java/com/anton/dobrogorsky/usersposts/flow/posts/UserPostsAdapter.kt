@@ -19,6 +19,10 @@ class UserPostsAdapter() : RecyclerView.Adapter<UserPostsAdapter.ViewHolder>() {
 
     private fun getItem(position: Int) = userPostList[position]
 
+    fun updatePost(position: Int) {
+        notifyItemChanged(position)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_user_post_list, parent, false)
@@ -37,7 +41,8 @@ class UserPostsAdapter() : RecyclerView.Adapter<UserPostsAdapter.ViewHolder>() {
         val view: View,
         private val postTitleTextView: TextView? = view.findViewById(R.id.title),
         private val postBodyTextView: TextView? = view.findViewById(R.id.body),
-        private val postIdTextView: TextView? = view.findViewById(R.id.post_id)
+        private val postIdTextView: TextView? = view.findViewById(R.id.post_id),
+        private val postCommentsCountTextView: TextView? = view.findViewById(R.id.post_comment_count)
     ) : RecyclerView.ViewHolder(view) {
 
         fun bind(post: Post) {
@@ -45,6 +50,7 @@ class UserPostsAdapter() : RecyclerView.Adapter<UserPostsAdapter.ViewHolder>() {
             postTitleTextView?.text = post.title
             postBodyTextView?.text = post.body
             postIdTextView?.text = "# ${adapterPosition + 1}"
+            postCommentsCountTextView?.text = "${post.comments?.count() ?: 0}"
         }
 
     }

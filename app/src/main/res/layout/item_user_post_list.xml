@@ -28,8 +28,8 @@
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/grey"
-            android:layout_below="@id/title"/>
+            android:layout_below="@id/title"
+            android:background="@color/grey" />
 
         <TextView
             android:id="@+id/body"
@@ -48,6 +48,35 @@
             android:layout_alignParentEnd="true"
             tools:text="# 1" />
 
+        <TextView
+            android:id="@+id/post_comment_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/body"
+            android:layout_marginTop="8dp"
+            android:text="@string/post_comments_label"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/post_comment_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/body"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/post_comments_label"
+            android:textSize="14sp"
+            tools:text="44" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/postComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_comment_label"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:listitem="@layout/item_post_comment_list"
+            android:layout_marginTop="4dp"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

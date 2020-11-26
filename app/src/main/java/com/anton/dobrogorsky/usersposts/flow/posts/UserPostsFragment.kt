@@ -53,7 +53,11 @@ class UserPostsFragment : Fragment() {
             adapter = userPostsAdapter
         }
         viewModel.userPosts.observe(this, { userPosts ->
+            viewModel.loadCommentsForPosts()
             userPostsAdapter.userPostList = userPosts
+        })
+        viewModel.updateCommentsPostPosition.observe(this, { postPosition ->
+            userPostsAdapter.updatePost(postPosition)
         })
     }
 
