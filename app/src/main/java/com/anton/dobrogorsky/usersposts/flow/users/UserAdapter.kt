@@ -17,6 +17,11 @@ class UserAdapter(val onItemClick: (userId: User) -> Unit) :
             notifyDataSetChanged()
         }
 
+    fun sortList(ascending: Boolean) {
+        userList=if (ascending) userList.sortedBy { it.username }
+        else userList.sortedByDescending { it.username }
+    }
+
     private fun getItem(position: Int) = userList[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

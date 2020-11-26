@@ -10,7 +10,7 @@ class UserListViewModel(val userRepository: UserRepository) : ViewModel() {
 
     val userList: LiveData<List<User>> = liveData {
         with(userRepository.getUsers()) {
-            if (isSuccessful) body()?.let { emit(it) }
+            if (isSuccessful) body()?.let { emit(it.sortedBy { it.username }) }
         }
     }
 
