@@ -16,7 +16,7 @@ class UserPostsViewModel(val postRepository: PostRepository) : ViewModel() {
 
     fun fetchUserPosts(userId: Int) {
         viewModelScope.launch {
-            _userPosts.value = postRepository.getAllUsersPosts(userId)
+            _userPosts.value = postRepository.getAllUsersPosts(userId).sortedBy { it.title }
         }
     }
 

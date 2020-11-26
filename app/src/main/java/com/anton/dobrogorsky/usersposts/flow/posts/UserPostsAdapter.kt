@@ -20,6 +20,11 @@ class UserPostsAdapter() : RecyclerView.Adapter<UserPostsAdapter.ViewHolder>() {
 
     private fun getItem(position: Int) = userPostList[position]
 
+    fun sortList(ascending: Boolean) {
+        userPostList=if (ascending) userPostList.sortedBy { it.title }
+        else userPostList.sortedByDescending { it.title }
+    }
+
     fun updatePost(position: Int) {
         notifyItemChanged(position)
     }

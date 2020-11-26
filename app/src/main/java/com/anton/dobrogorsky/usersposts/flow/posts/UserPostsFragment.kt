@@ -1,17 +1,12 @@
 package com.anton.dobrogorsky.usersposts.flow.posts
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anton.dobrogorsky.usersposts.R
-import com.anton.dobrogorsky.usersposts.databinding.UserListFragmentBinding
 import com.anton.dobrogorsky.usersposts.databinding.UserPostsFragmentBinding
-import com.anton.dobrogorsky.usersposts.flow.users.UserListViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class UserPostsFragment : Fragment() {
@@ -41,6 +36,7 @@ class UserPostsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = UserPostsFragmentBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -52,13 +48,31 @@ class UserPostsFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = userPostsAdapter
         }
-        viewModel.userPosts.observe(this, { userPosts ->
+        viewModel.userPosts.observe(this) { userPosts ->
             viewModel.loadCommentsForPosts()
             userPostsAdapter.userPostList = userPosts
-        })
-        viewModel.updateCommentsPostPosition.observe(this, { postPosition ->
+        }
+        viewModel.updateCommentsPostPosition.observe(this) { postPosition ->
             userPostsAdapter.updatePost(postPosition)
-        })
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_toolbar, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.sort -> {
+                userPostsAdapter.sortList(ascending = item.isChecked)
+                if (item.isChecked) item.setIcon(R.drawable.ic_sort_white)
+                else item.setIcon(R.drawable.ic_sort_black)
+                item.isChecked = !item.isChecked
+                return true
+            }
+            else -> return false
+        }
     }
 
     override fun onResume() {
