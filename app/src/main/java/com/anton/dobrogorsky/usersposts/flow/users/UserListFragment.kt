@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.LinearLayout
+import android.widget.SearchView
 import android.widget.Toolbar
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,7 +39,7 @@ class UserListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        userAdapter = UserAdapter {user ->
+        userAdapter = UserAdapter { user ->
             mainActivity?.replaceFragment(UserPostsFragment.newInstance(user.id, user.username))
         }
         binding.userList.apply {
@@ -46,7 +47,7 @@ class UserListFragment : Fragment() {
             adapter = userAdapter
         }
         viewModel.userList.observe(this) { users ->
-            userAdapter.userList = users
+            userAdapter.updateData(users)
         }
 
 
@@ -54,6 +55,23 @@ class UserListFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_toolbar, menu)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        with(searchItem.actionView as? androidx.appcompat.widget.SearchView) {
+            this?.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    if (!query.isNullOrEmpty()) userAdapter.search(query)
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText.isNullOrEmpty()) userAdapter.showAll()
+                    return true
+                }
+
+            })
+        }
+
         super.onCreateOptionsMenu(menu, inflater)
     }
 

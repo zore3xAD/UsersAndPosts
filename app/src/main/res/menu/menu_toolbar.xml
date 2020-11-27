@@ -3,9 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:checkable="true"
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_white"
+        android:title="Search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
         android:id="@+id/sort"
+        android:checkable="true"
+        android:icon="@drawable/ic_sort_white"
         android:title="Sort"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_sort_white" />
+        app:showAsAction="always" />
 </menu>
